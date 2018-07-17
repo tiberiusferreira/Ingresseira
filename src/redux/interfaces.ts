@@ -17,7 +17,14 @@ export interface IDeleteEvent {
 
 
 export interface IEvent {
+    date: string,
+    description: string,
     id: number,
+    imageUrl: string,
+    imageAlt: string,
+    place: string,
+    price: number,
+    salesPlace: string,
     title: string,
     toggled: boolean
 }​

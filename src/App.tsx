@@ -22,10 +22,6 @@ class App extends Component {
         );
     }
 }
-// Logar
-// Atualizar dados de login
-// Instalar App
-
 
 
 export default App;
