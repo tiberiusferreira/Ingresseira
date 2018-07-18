@@ -16,10 +16,10 @@ class EventBanner extends Component<{event: IEvent, onClick: (eventTitle: number
                         <h2>{this.props.event.title}</h2>
                         <h3>{this.props.event.date}</h3>
                         <h4>{this.props.event.place}</h4>
-                        <h4>{this.props.event.salesPlace}</h4>
+                        <h4>{this.props.event.sales_place}</h4>
                         <h2>R$ {this.props.event.price}</h2>
                     </div>
-                    <img className={"event-img"} src={this.props.event.imageUrl} alt={this.props.event.imageAlt}/>
+                    <img className={"event-img"} src={this.props.event.image_url} alt={this.props.event.image_alt}/>
                     <div hidden={!(this.getEventContainerClass() === "expanded-event-container")} className={"expanded-event-details"}>
                         {
                             this.props.event.description.split("\n")

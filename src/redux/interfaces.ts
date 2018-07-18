@@ -20,11 +20,11 @@ export interface IEvent {
     date: string,
     description: string,
     id: number,
-    imageUrl: string,
-    imageAlt: string,
+    image_url: string,
+    image_alt: string,
     place: string,
     price: number,
-    salesPlace: string,
+    sales_place: string,
     title: string,
     toggled: boolean
 }​
