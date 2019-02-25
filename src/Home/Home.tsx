@@ -2,9 +2,12 @@ import * as React from 'react';
 import {Component, Fragment} from "react";
 import {connect} from "react-redux";
 import {Nav} from "../Nav/Nav"
-import {IEvent, IState} from "../redux/interfaces";
+import {IEvent, State} from "../redux/interfaces";
+import {toggleEvent} from "../redux/actions"
 import {default as EventBanner} from "./EventBanner";
 import "./Home.css"
+
+// Component<{Props}, {State}>
 class HomeSection extends Component<{events: IEvent[], onClick: (eventId: number) => void}, {}> {
     constructor(props: {events: IEvent[], onClick: (eventId: number) => void}) {
         super(props);
@@ -29,23 +32,17 @@ class HomeSection extends Component<{events: IEvent[], onClick: (eventId: number
     }
 }
 
-const mapStateToProps = (state: IState): {events: IEvent[]} => {
-    return {
-        events: state.availableEvents
-    }
-}
-​
+const mapStateToProps = (state: State) => ({
+    events: state.availableEvents
+});
 
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
     onClick: (eventId: number) => {
-        dispatch({
-            eventId,
-            type: 'ToggleEvent',
-        })
+        dispatch(toggleEvent(eventId))
     }
-})
-​
+});
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

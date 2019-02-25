@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component, Fragment} from "react";
+import {Component, Fragment} from 'react';
 import {connect} from "react-redux";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import {Dispatch} from "redux";
@@ -7,31 +7,26 @@ import "./App.css"
 import {BoughtTickets} from "./BoughtTickets/BoughtTickets"
 import {default as HomeSection} from "./Home/Home"
 import {ManageEvents} from "./ManageEvents/ManageEvents";
-import {IEvent} from "./redux/interfaces";
+import {IAddEvent, IEvent} from "./redux/interfaces";
+import {addEvent} from "./redux/actions";
 import {Settings} from "./Settings/Settings";
 
-
-function getEvents(dispatch: any) {
-
-    // Invert control!
-    // Return a function that accepts `dispatch` so we can dispatch later.
-    // Thunk middleware knows how to turn thunk async actions into actions.
+const SERVER_EVENTS_URL: string = "http://localhost:1024/api/events";
 
 
-    return fetch('http://localhost:8000/api/events')
+function getEvents(addServerEvents: ((event: IEvent) => IAddEvent)) {
+    fetch(SERVER_EVENTS_URL)
         .then((response: Response) => response.json())
         .then((events: IEvent[]) => (events.map(
-            event => dispatch({
-                event,
-                type: 'AddEvent',
-            })
-        )));
+                event => addServerEvents(event)
+            ))
+        );
 }
 
-class App extends Component <{dispatch: Dispatch},{}>{
-    constructor(props: {dispatch: Dispatch}){
+class App extends Component <{addEvent: ((event: IEvent) => IAddEvent) },{}>{
+    constructor(props: {addEvent: ((event: IEvent) => IAddEvent)}){
         super(props);
-        getEvents(this.props.dispatch)
+        getEvents(props.addEvent)
     }
     public render() {
         return (
@@ -47,7 +42,9 @@ class App extends Component <{dispatch: Dispatch},{}>{
         );
     }
 }
-// const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-//     dispatch
-// })
-export default connect()(App);
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        addEvent: (event: IEvent) => dispatch(addEvent(event))
+    }
+};
+export default connect(null, mapDispatchToProps)(App);

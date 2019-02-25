@@ -48,5 +48,3 @@ class EventBanner extends Component<{event: IEvent, onClick: (eventTitle: number
 
 
 export default EventBanner;
-​
-

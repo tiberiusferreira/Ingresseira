@@ -1,19 +1,27 @@
-export type IAction = IAddEvent | IDeleteEvent | IToogleEvent;
+export const ADD_EVENT = 'ADD_EVENT';
+export const TOGGLE_EVENT = 'TOGGLE_EVENT';
 
 export interface IAddEvent {
-    type: 'AddEvent';
+    type: typeof ADD_EVENT;
     event: IEvent
 }
 
+
 export interface IToogleEvent {
-    type: 'ToggleEvent';
+    type: typeof TOGGLE_EVENT;
     eventId: number
 }
 
-export interface IDeleteEvent {
-    type: 'DeleteEvent';
-    event: IEvent
-}
+
+export type EventActions = IAddEvent | IToogleEvent
+// export interface DeleteEvent {
+//     readonly type: ActionType.DeleteEvent;
+//     event: IEvent
+// }
+//
+// export interface ErrorLoading {
+//     readonly type: ActionType.ErrorLoading;
+// }
 
 
 export interface IEvent {
@@ -27,17 +35,23 @@ export interface IEvent {
     sales_place: string,
     title: string,
     toggled: boolean
-}​
+}
 
-export interface IUser {
+export interface User {
     isOrganizer: boolean
     id: number,
     name: string,
-}​
+}
 
+export enum LoadingState {
+    DoneLoading = 0,
+    ErrorLoading = 1,
+    NotLoading = 2,
+}
 
-export interface IState {
-    user: IUser,
+export interface State {
+    user: User,
+    loading_state: LoadingState
     availableEvents: IEvent[],
 }
 
