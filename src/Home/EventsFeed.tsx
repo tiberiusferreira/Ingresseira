@@ -3,13 +3,15 @@ import {Component, Fragment} from "react";
 import {connect} from "react-redux";
 import {Nav} from "../Nav/Nav"
 import {IEvent, State} from "../redux/interfaces";
-import {toggleEvent} from "../redux/actions"
+import {saveEvent, toggleEvent} from "../redux/actions"
 import {default as EventBanner} from "./EventBanner";
-import "./Home.css"
+import "./EventsFeed.css"
 
 // Component<{Props}, {State}>
-class HomeSection extends Component<{events: IEvent[], onClick: (eventId: number) => void}, {}> {
-    constructor(props: {events: IEvent[], onClick: (eventId: number) => void}) {
+class EventsFeed extends Component<{events: IEvent[], onClick: (eventId: number) => void,
+    onSaveClicked: (eventId: number) => void}, {}> {
+    constructor(props: {events: IEvent[], onClick: (eventId: number) => void,
+        onSaveClicked: (eventId: number) => void}) {
         super(props);
     }
     public render() {
@@ -22,7 +24,8 @@ class HomeSection extends Component<{events: IEvent[], onClick: (eventId: number
                             <EventBanner
                                 key={event.id}
                                 event={event}
-                                onClick={this.props.onClick}
+                                onEventClicked={this.props.onClick}
+                                onSaveClicked={this.props.onSaveClicked}
                             />
                         )
                     }
@@ -37,14 +40,24 @@ const mapStateToProps = (state: State) => ({
 });
 
 
-const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-    onClick: (eventId: number) => {
-        dispatch(toggleEvent(eventId))
+const mapDispatchToProps = (dispatch: any, ownProps: any) => (
+    {
+        onClick: (eventId: number) => {
+            dispatch(toggleEvent(eventId))
+        },
+        onSaveClicked: (eventId: number) => {
+            dispatch(saveEvent(eventId))
+        }
     }
-});
+);
+
+export {
+    EventsFeed as UnconnectedEventsFeed
+};
+
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(HomeSection);
+)(EventsFeed);
 

@@ -1,3 +1,3 @@
-import events from './events'
+import reducer from './events'
 
-export default events;
+export default reducer;

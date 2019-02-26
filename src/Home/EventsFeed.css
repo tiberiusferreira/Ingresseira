@@ -1,0 +1,233 @@
+
+/* A grid container with only one column */
+.event-posts-container{
+    display: grid;
+    max-width: 1050px;
+    margin: 10px auto 0 auto; /* Top right bottom left */
+    border-radius: 3px;
+    grid-template-columns: auto;
+    grid-gap: 30px;
+    padding-top: 10px;
+}
+
+.event-posts-container-save-button{
+    width: 40%;
+    height: 4em;
+    line-height: 4em;
+    border-radius: 20px;
+    background-color: #0000001a;
+    margin: auto;
+    border: 2px solid #000000;
+    cursor: pointer;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
+}
+
+
+.event-posts-container-save-button-text {
+    text-align: center;
+    display: block;
+    font-size: 2em;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    padding: 0;
+    border: 0;
+}
+
+.event-summary{
+    grid-column: 1;
+    text-align: center;
+}
+
+
+.event-summary-title{
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
+    border: 0;
+}
+
+.event-summary-date{
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
+    border: 0;
+}
+
+.event-summary-place{
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
+    border: 0;
+}
+
+.event-summary-sales-place{
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
+    border: 0;
+}
+
+.event-summary-price{
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
+    border: 0;
+}
+
+@media (max-width:950px){ /* or less */
+
+    .event-container {
+        display: grid;
+        background-color: #ffffff;
+        border-radius: 5px;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        overflow: hidden;
+        border: 1px solid #000000;
+        margin: 0 5% 0 5%;
+    }
+
+    .event-summary-container{
+        width: 100%;
+        height: 100%;
+        padding: 7px;
+        display: grid;
+        grid-row: 2 / span 1;
+        grid-template-columns: auto;
+        grid-template-rows: repeat(5, 1fr);
+        grid-gap: 5px;
+        cursor: pointer;
+    }
+
+    .event-details{
+        grid-row: 3 / span 1;
+        padding: 2%;
+    }
+
+    .event-img{
+        max-width:100%;
+        grid-row: 1 / span 1;
+        cursor: pointer;
+    }
+
+    .event-summary{
+        grid-column: 1;
+        text-align: center;
+    }
+
+
+    .event-summary-title{
+        margin: auto;
+        text-align: center;
+        grid-row: 1 / span 1;
+    }
+
+    .event-summary-date{
+        margin: auto;
+        text-align: center;
+        grid-row: 2 / span 1;
+    }
+
+    .event-summary-place{
+        margin: auto;
+        text-align: center;
+        grid-row: 3 / span 1;
+    }
+
+    .event-summary-sales-place{
+        margin: auto;
+        text-align: center;
+        grid-row: 4 / span 1;
+    }
+
+    .event-summary-price{
+        margin: auto;
+        text-align: center;
+        grid-row: 5 / span 1;
+        color: #cc2c51;
+    }
+
+}
+
+@media (min-width:951px) { /* or more*/
+
+
+    .event-details{
+        grid-column: 1/4;
+        padding: 2%;
+    }
+
+    .event-container {
+        display: grid;
+        background-color: #ffffff;
+        border-radius: 10px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        overflow: hidden;
+        border: 1px solid #000000;
+        margin: 0 40px 0 40px;
+    }
+
+    .event-summary-container{
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: repeat(5, 1fr);
+        grid-gap: 1px;
+        cursor: pointer;
+    }
+
+    .event-img {
+        max-width: 100%;
+        grid-column: 2 / 4;
+        cursor: pointer;
+    }
+
+    .event-summary{
+        grid-column: 1;
+        text-align: center;
+    }
+
+
+    .event-summary-title{
+        margin: auto;
+        text-align: center;
+        grid-row: 1 / span 1;
+    }
+
+    .event-summary-date{
+        margin: auto;
+        text-align: center;
+        grid-row: 2 / span 1;
+    }
+
+    .event-summary-place{
+        margin: auto;
+        text-align: center;
+        grid-row: 3 / span 1;
+    }
+
+    .event-summary-sales-place{
+        margin: auto;
+        text-align: center;
+        grid-row: 4 / span 1;
+    }
+
+    .event-summary-price{
+        margin: auto;
+        text-align: center;
+        grid-row: 5 / span 1;
+        color: #cc2c51;
+    }
+
+}
+
+
+

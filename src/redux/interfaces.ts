@@ -1,27 +1,25 @@
 export const ADD_EVENT = 'ADD_EVENT';
 export const TOGGLE_EVENT = 'TOGGLE_EVENT';
+export const SAVE_EVENT = 'SAVE_EVENT';
 
-export interface IAddEvent {
+export interface IAddEventAction {
     type: typeof ADD_EVENT;
     event: IEvent
 }
 
 
-export interface IToogleEvent {
+export interface IToggleEventAction {
     type: typeof TOGGLE_EVENT;
     eventId: number
 }
 
+export interface ISaveEventAction {
+    type: typeof SAVE_EVENT;
+    eventId: number
+}
 
-export type EventActions = IAddEvent | IToogleEvent
-// export interface DeleteEvent {
-//     readonly type: ActionType.DeleteEvent;
-//     event: IEvent
-// }
-//
-// export interface ErrorLoading {
-//     readonly type: ActionType.ErrorLoading;
-// }
+
+export type EventActions = IAddEventAction | IToggleEventAction | ISaveEventAction
 
 
 export interface IEvent {
@@ -34,7 +32,8 @@ export interface IEvent {
     price: number,
     sales_place: string,
     title: string,
-    toggled: boolean
+    toggled: boolean,
+    saved: boolean
 }
 
 export interface User {

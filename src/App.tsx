@@ -4,27 +4,27 @@ import {connect} from "react-redux";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import {Dispatch} from "redux";
 import "./App.css"
-import {BoughtTickets} from "./BoughtTickets/BoughtTickets"
-import {default as HomeSection} from "./Home/Home"
+import BoughtTickets from "./BoughtTickets/BoughtTickets"
 import {ManageEvents} from "./ManageEvents/ManageEvents";
-import {IAddEvent, IEvent} from "./redux/interfaces";
+import {IAddEventAction, IEvent} from "./redux/interfaces";
 import {addEvent} from "./redux/actions";
 import {Settings} from "./Settings/Settings";
+import EventsFeed from "./Home/EventsFeed";
 
 const SERVER_EVENTS_URL: string = "http://localhost:1024/api/events";
 
 
-function getEvents(addServerEvents: ((event: IEvent) => IAddEvent)) {
+function getEvents(addEvent: ((event: IEvent) => IAddEventAction)) {
     fetch(SERVER_EVENTS_URL)
         .then((response: Response) => response.json())
         .then((events: IEvent[]) => (events.map(
-                event => addServerEvents(event)
+                event => addEvent(event)
             ))
         );
 }
 
-class App extends Component <{addEvent: ((event: IEvent) => IAddEvent) },{}>{
-    constructor(props: {addEvent: ((event: IEvent) => IAddEvent)}){
+class App extends Component <{addEvent: ((event: IEvent) => IAddEventAction) },{}>{
+    constructor(props: {addEvent: ((event: IEvent) => IAddEventAction)}){
         super(props);
         getEvents(props.addEvent)
     }
@@ -32,7 +32,7 @@ class App extends Component <{addEvent: ((event: IEvent) => IAddEvent) },{}>{
         return (
             <Router>
                 <Fragment>
-                    <Route exact={true} path="/" component={HomeSection}/>
+                    <Route exact={true} path="/" component={EventsFeed}/>
                     <Route exact={true} path="/BoughtTickets" component={BoughtTickets}/>
                     <Route exact={true} path="/ManageEvents" component={ManageEvents}/>
                     <Route exact={true} path="/Settings" component={Settings}/>
